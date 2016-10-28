@@ -11,9 +11,9 @@ import org.springframework.util.StringUtils;
 
 /**
  * Created by wanglimin1 on 2016/10/27.
- *
- * todo 1,后期日志名称要加入缓存中，创建时 有锁，会影响性能.
- *      2,动态获取日志级别
+ * <p>
+ * todo 1,后期日志名称要加入缓存中，创建时 有锁，会影响性能.(内部已有缓存)
+ * todo 2,动态获取日志级别
  */
 public class LoggableInterceptor implements MethodInterceptor {
 
@@ -42,7 +42,12 @@ public class LoggableInterceptor implements MethodInterceptor {
             Object result = methodInvocation.proceed();
 
             String resultJson = JacksonUtil.writeValueAsString(result);
-            proxyLogger.info("after invoke, method:{}, args:{}, result:{}", methodName, argsJson, resultJson);
+            if (loggable.printResult()) {
+                proxyLogger.info("after invoke, method:{}, args:{}, result:{}", methodName, argsJson, resultJson);
+            } else {
+                proxyLogger.info("after invoke, method:{}, args:{}", methodName, argsJson);
+            }
+
             return result;
         } catch (Throwable cause) {
             proxyLogger.error("invoke fail, method:{}, args:{}", methodName, argsJson, cause);
