@@ -102,10 +102,7 @@ public class RdLoggableAspect {
      */
     private boolean doFilterLog(Class<?> aClass, String methodName) {
         Map<String, Boolean> declaredFieldMap = map.get(aClass.getName());
-        if (declaredFieldMap.get(methodName) != null) {
-            return true;
-        }
-        return false;
+        return declaredFieldMap.get(methodName) != null;
     }
 
     private String toUpStr(String str) {
