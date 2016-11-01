@@ -21,7 +21,7 @@ public class LoggableInterceptor implements MethodInterceptor {
 
         Logger proxyLogger;
         Class<?> aClass = methodInvocation.getThis().getClass();
-        Loggable loggable = AnnotationUtils.findAnnotation(aClass, Loggable.class);
+        Loggable loggable = AnnotationUtils.getAnnotation(aClass, Loggable.class);
 
         if (loggable == null) {
             return methodInvocation.proceed();

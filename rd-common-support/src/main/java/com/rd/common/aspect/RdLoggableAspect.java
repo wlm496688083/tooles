@@ -11,6 +11,10 @@ import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
+import java.lang.reflect.Field;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
 /**
  * Created by wanglimin1 on 2016/10/27.
  * <p>
@@ -23,14 +27,19 @@ public class RdLoggableAspect {
     public Object doProcess(ProceedingJoinPoint pjp) throws Throwable {
 
         Logger proxyLogger;
-        Class<?> aClass = pjp.getThis().getClass();
+        Class<?> aClass = pjp.getTarget().getClass();
         Loggable loggable = AnnotationUtils.findAnnotation(aClass, Loggable.class);
 
         if (loggable == null) {
             return pjp.proceed();
         }
 
-        String methodName = pjp.getClass().getName();
+        initClassAndDeclaredFields(aClass);
+        String methodName = pjp.getSignature().getName();
+        if (doFilterLog(aClass, methodName)) {
+            return pjp.proceed();
+        }
+
         if (!StringUtils.isEmpty(loggable.logName())) {
             proxyLogger = LoggerFactory.getLogger(loggable.logName());
         } else {
@@ -39,7 +48,11 @@ public class RdLoggableAspect {
 
         String argsJson = null;
         try {
-            argsJson = JacksonUtil.writeValueAsString(pjp.getArgs());
+            Object[] args = pjp.getArgs();
+            if (args.length > 0) {
+                argsJson = JacksonUtil.writeValueAsString(args);
+            }
+
             proxyLogger.info("before invoke, method:{}, args:{}", methodName, argsJson);
 
             Object result = pjp.proceed();
@@ -57,4 +70,46 @@ public class RdLoggableAspect {
             throw cause;
         }
     }
+
+    private Map<String, Map<String, Boolean>> map = new ConcurrentHashMap<String, Map<String, Boolean>>(128);
+
+
+    /**
+     * 第一次获取时 先初始化 当前类和属性的关系
+     *
+     * @param aClass 当前实例
+     */
+    private void initClassAndDeclaredFields(Class<?> aClass) {
+        String className = aClass.getName();
+        Map<String, Boolean> declaredFieldMap = map.get(className);
+        if (declaredFieldMap == null) {
+            declaredFieldMap = new ConcurrentHashMap<String, Boolean>();
+            Field[] declaredFields = aClass.getDeclaredFields();
+            for (Field field : declaredFields) {
+                declaredFieldMap.put("get" + toUpStr(field.getName()), true);
+                declaredFieldMap.put("set" + toUpStr(field.getName()), true);
+            }
+            map.put(className, declaredFieldMap);
+        }
+    }
+
+    /**
+     * 过滤一些 已知的无用方法日志的打印
+     * eg: get,set
+     *
+     * @param aClass     当前类
+     * @param methodName 当前方法名
+     */
+    private boolean doFilterLog(Class<?> aClass, String methodName) {
+        Map<String, Boolean> declaredFieldMap = map.get(aClass.getName());
+        if (declaredFieldMap.get(methodName) != null) {
+            return true;
+        }
+        return false;
+    }
+
+    private String toUpStr(String str) {
+        return String.valueOf(str.charAt(0)).toUpperCase().concat(str.substring(1));
+    }
+
 }
