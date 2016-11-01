@@ -7,7 +7,7 @@ import org.springframework.aop.support.annotation.AnnotationMatchingPointcut;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-
+@Deprecated
 @Configuration
 public class LoggableAutoConfig {
 
