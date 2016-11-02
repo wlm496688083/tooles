@@ -1,11 +1,13 @@
 package com.rd.common.test.service;
 
-import com.rd.common.annotation.Loggable;
+import com.rd.common.annotation.UMP;
+import com.rd.common.rdenum.Key;
 
 /**
  * Created by wanglimin1 on 2016/11/1.
  */
-@Loggable
+//@Loggable
+@UMP(Key.SERVICE)
 public class LoggableService {
 
     private String name;

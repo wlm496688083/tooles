@@ -6,7 +6,7 @@ import java.lang.annotation.*;
  * Created by wanglimin1 on 2016/10/27.
  */
 
-@Target({ElementType.TYPE})
+@Target({ElementType.TYPE, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface Loggable {
