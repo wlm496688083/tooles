@@ -15,6 +15,7 @@ import org.springframework.util.StringUtils;
  * todo 1,后期日志名称要加入缓存中，创建时 有锁，会影响性能.(内部已有缓存)
  * todo 2,动态获取日志级别
  */
+@Deprecated
 public class LoggableInterceptor implements MethodInterceptor {
 
     public Object invoke(MethodInvocation methodInvocation) throws Throwable {
