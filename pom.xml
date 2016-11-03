@@ -7,6 +7,8 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>rd-common-support</module>
+        <module>com-rd-common-web</module>
+        <module>rd-common-web</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -26,6 +28,7 @@
         <cglib.version>3.2.4</cglib.version>
         <aspect.version>1.8.9</aspect.version>
         <ump.version>4.0.3</ump.version>
+        <jmq-client-spring.version>1.1.70</jmq-client-spring.version>
     </properties>
 
     <dependencyManagement>
@@ -76,6 +79,16 @@
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-beans</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-webmvc</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-web</artifactId>
                 <version>${spring.version}</version>
             </dependency>
             <dependency>
@@ -138,6 +151,20 @@
                 <artifactId>profiler</artifactId>
                 <version>${ump.version}</version>
             </dependency>
+
+            <!--jmq-->
+            <dependency>
+                <groupId>com.jd.jmq</groupId>
+                <artifactId>jmq-client-spring</artifactId>
+                <version>${jmq-client-spring.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.springframework</groupId>
+                        <artifactId>spring-beans</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
