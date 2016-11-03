@@ -9,12 +9,10 @@ import com.rd.common.exception.CommonError;
 import com.rd.common.exception.SystemRpcUnavailableException;
 import com.rd.common.rdenum.Key;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 /**
  * Created by wanglimin1 on 2016/7/12.
  */
-@Component("jmqUtil")
 @ConvertException
 @UMP(Key.RPC)
 public class SendJMQUtil<T> {
@@ -22,7 +20,7 @@ public class SendJMQUtil<T> {
     @Autowired
     private MessageProducer jmqProducer;
 
-    public void process(T t, String topicId, String businessId) {
+    public void send(T t, String topicId, String businessId) {
         try {
             jmqProducer.send(new Message(topicId, JacksonUtil.writeValueAsString(t), businessId));
         } catch (JMQException e) {
