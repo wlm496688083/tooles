@@ -8,7 +8,6 @@ import com.rd.common.annotation.UMP;
 import com.rd.common.exception.CommonError;
 import com.rd.common.exception.SystemRpcUnavailableException;
 import com.rd.common.rdenum.Key;
-import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * Created by wanglimin1 on 2016/7/12.
@@ -17,7 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 @UMP(Key.RPC)
 public class SendJMQUtil<T> {
 
-    @Autowired
+    //@Autowired
     private MessageProducer jmqProducer;
 
     public void send(T t, String topicId, String businessId) {

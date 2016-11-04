@@ -10,7 +10,8 @@ public enum CommonError implements ErrorCode {
     BUSINESS_LIMIT("%s"),
     SYSTEM_ERROR("系统内部错误"),
     UNKNOWN_ERROR("不识别的错误"),
-    JMQ_SEND_EXCEPTION("发送JMQ消息异常,topicId:%s ,businessId:%s");
+    JMQ_SEND_EXCEPTION("发送JMQ消息异常,topicId:%s ,businessId:%s"),
+    CALL_JSF_EXCEPTION("调用JSF接口异常,接口名:%s ,别名:%s");
 
     private String msg;
 

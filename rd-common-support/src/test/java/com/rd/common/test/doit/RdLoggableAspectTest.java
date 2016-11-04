@@ -17,7 +17,6 @@ public class RdLoggableAspectTest extends TestBase{
 
     @Test
     public void testThis(){
-        loggableService.getName();
         Assert.assertNotNull(loggableService.queryName());
     }
 }
