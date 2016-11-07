@@ -38,7 +38,7 @@ public class MvcAdviceCommon {
             AbstractException abstractException = (AbstractException) e;
             baseResult = BaseResult.newResult(false, abstractException.getCode(), abstractException.getMsg());
         } else {
-            baseResult = BaseResult.newResult(false, CommonError.SYSTEM_ERROR.getCode(), CommonError.SYSTEM_ERROR.getMsg());
+            baseResult = BaseResult.newResult(false, CommonError.SYSTEM_ERROR.getCode(), CommonError.SYSTEM_ERROR.getMsg() + "," + e.getMessage());
         }
         json = JacksonUtil.writeValueAsString(baseResult);
 

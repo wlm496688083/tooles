@@ -20,9 +20,13 @@ public abstract class AbstractException extends RuntimeException {
 
         if (objs == null || objs.length == 0) {
             this.msg = errorCode.getMsg().replace("%s", "");
-            return;
+        } else {
+            this.msg = String.format(errorCode.getMsg(), objs);
         }
-        this.msg = String.format(errorCode.getMsg(), objs);
+        if (throwable != null) {
+            this.msg += " , detail : " + throwable.getMessage();
+        }
+
     }
 
     public String getCode() {
