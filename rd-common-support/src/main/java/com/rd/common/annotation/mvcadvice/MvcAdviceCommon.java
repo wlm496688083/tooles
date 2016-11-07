@@ -1,4 +1,4 @@
-package com.rd.common.mvcadvice;
+package com.rd.common.annotation.mvcadvice;
 
 import com.rd.common.exception.AbstractException;
 import com.rd.common.exception.CommonError;

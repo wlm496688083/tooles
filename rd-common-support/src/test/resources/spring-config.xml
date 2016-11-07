@@ -4,17 +4,17 @@
        default-autowire="byName">
 
 
-    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+<!--    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="locations">
             <list>
                 <value>classpath:ump_aspect.properties</value>
             </list>
         </property>
-        <!-- 配置文件中文乱码-->
+        &lt;!&ndash; 配置文件中文乱码&ndash;&gt;
         <property name="fileEncoding" value="UTF-8"/>
-    </bean>
+    </bean>-->
 
     <bean id="loggableService" class="com.rd.common.test.service.LoggableService"/>
 
-    <!--<import resource="classpath:spring-rd-config.xml"/>-->
+    <import resource="classpath:spring-rd-config.xml"/>
 </beans>

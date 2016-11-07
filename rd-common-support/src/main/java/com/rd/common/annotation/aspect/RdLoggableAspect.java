@@ -1,6 +1,7 @@
-package com.rd.common.aspect;
+package com.rd.common.annotation.aspect;
 
 import com.rd.common.annotation.Loggable;
+import com.rd.common.contains.RdAnnotationContains;
 import com.rd.common.util.JacksonUtil;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -23,7 +24,7 @@ import java.util.concurrent.ConcurrentHashMap;
 @Component
 public class RdLoggableAspect {
 
-    @Around(value = "(execution(public * ((@com.rd.common.annotation.Loggable *)+).*(..)) && within(@com.rd.common.annotation.Loggable *)) || @annotation(com.rd.common.annotation.Loggable)")
+    @Around(value = RdAnnotationContains.RD_LOGGABLE_AROUND)
     public Object doProcess(ProceedingJoinPoint pjp) throws Throwable {
 
         Logger proxyLogger;

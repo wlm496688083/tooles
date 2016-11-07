@@ -1,9 +1,10 @@
-package com.rd.common.aspect;
+package com.rd.common.annotation.aspect;
 
 
 import com.jd.ump.profiler.CallerInfo;
 import com.jd.ump.profiler.proxy.Profiler;
 import com.rd.common.annotation.UMP;
+import com.rd.common.contains.RdAnnotationContains;
 import com.rd.common.rdenum.Key;
 import com.rd.common.util.PropertiesUtil;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -25,7 +26,7 @@ import org.springframework.util.StringUtils;
 @Component
 public class RdUmpAspect {
 
-    @Around(value = "(execution(public * ((@com.rd.common.annotation.UMP *)+).*(..)) && within(@com.rd.common.annotation.UMP *)) || @annotation(com.rd.common.annotation.UMP)")
+    @Around(value = RdAnnotationContains.RD_UMP_AROUND)
     public Object doProcess(ProceedingJoinPoint pjp) throws Throwable {
 
         CallerInfo info = null;

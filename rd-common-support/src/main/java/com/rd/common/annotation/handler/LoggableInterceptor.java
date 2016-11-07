@@ -1,4 +1,4 @@
-package com.rd.common.handler;
+package com.rd.common.annotation.handler;
 
 import com.rd.common.annotation.Loggable;
 import com.rd.common.util.JacksonUtil;

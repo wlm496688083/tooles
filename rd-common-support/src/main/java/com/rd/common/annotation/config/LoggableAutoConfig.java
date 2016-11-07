@@ -1,20 +1,19 @@
-package com.rd.common.config;
+package com.rd.common.annotation.config;
 
 import com.rd.common.annotation.Loggable;
-import com.rd.common.handler.LoggableInterceptor;
+import com.rd.common.annotation.handler.LoggableInterceptor;
 import org.springframework.aop.support.DefaultPointcutAdvisor;
 import org.springframework.aop.support.annotation.AnnotationMatchingPointcut;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+
 
 @Deprecated
-@Configuration
+//@Configuration
 public class LoggableAutoConfig {
 
     public LoggableAutoConfig() {
     }
 
-    @Bean
+    //@Bean
     public DefaultPointcutAdvisor loggableAnnotationClassPointCut() {
         DefaultPointcutAdvisor advisor = new DefaultPointcutAdvisor();
         AnnotationMatchingPointcut pointcut = new AnnotationMatchingPointcut(Loggable.class, true);

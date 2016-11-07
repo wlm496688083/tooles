@@ -1,23 +1,16 @@
 package com.rd.common.test.service;
 
-import com.rd.common.annotation.ConvertException;
-import com.rd.common.annotation.Loggable;
-import com.rd.common.annotation.UMP;
-import com.rd.common.exception.CommonError;
-import com.rd.common.exception.SystemUnavailableException;
-import com.rd.common.rdenum.Key;
+import com.rd.common.annotation.pack.RdService;
 
 /**
  * Created by wanglimin1 on 2016/11/1.
  */
-@Loggable
-@UMP(Key.SERVICE)
-@ConvertException
+@RdService
 public class LoggableService {
 
     private String name;
 
-    private int age ;
+    private int age;
 
     public String getName() {
         return name;
@@ -35,8 +28,9 @@ public class LoggableService {
         this.age = age;
     }
 
-    public String queryName(){
-        throw new SystemUnavailableException(CommonError.SYSTEM_ERROR);
+    public String queryName() {
+        System.out.println(111);
+        return "111234";
     }
 
 }

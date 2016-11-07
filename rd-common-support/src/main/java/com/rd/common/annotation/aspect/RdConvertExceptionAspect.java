@@ -1,5 +1,6 @@
-package com.rd.common.aspect;
+package com.rd.common.annotation.aspect;
 
+import com.rd.common.contains.RdAnnotationContains;
 import com.rd.common.exception.CommonError;
 import com.rd.common.exception.SystemRpcUnavailableException;
 import com.rd.common.exception.SystemUnavailableException;
@@ -13,7 +14,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class RdConvertExceptionAspect {
 
-    @Around(value = "(execution(public * ((@com.rd.common.annotation.ConvertException *)+).*(..)) && within(@com.rd.common.annotation.ConvertException *)) || @annotation(com.rd.common.annotation.ConvertException)")
+    @Around(value = RdAnnotationContains.RD_CONVERTEXCEPTION_AROUND)
     public Object around(ProceedingJoinPoint pjp) {
         try {
             return pjp.proceed();
