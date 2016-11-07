@@ -16,5 +16,5 @@
 
     <bean id="loggableService" class="com.rd.common.test.service.LoggableService"/>
 
-    <import resource="classpath:spring-rd-config.xml"/>
+    <!--<import resource="classpath:spring-rd-config.xml"/>-->
 </beans>
