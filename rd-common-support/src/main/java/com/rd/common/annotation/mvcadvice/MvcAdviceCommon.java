@@ -44,7 +44,7 @@ public class MvcAdviceCommon {
 
         try {
             response.setCharacterEncoding("UTF-8");
-            response.setContentType("text/json");
+            response.setContentType("application/json");
             response.getWriter().write(json);
             response.getWriter().flush();
         } catch (IOException ignored) {
