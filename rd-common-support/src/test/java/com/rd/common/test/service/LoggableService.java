@@ -5,7 +5,7 @@ import com.rd.common.annotation.pack.RdService;
 /**
  * Created by wanglimin1 on 2016/11/1.
  */
-@RdService
+@RdService(logName = "asd")
 public class LoggableService {
 
     private String name;

@@ -8,7 +8,7 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.core.annotation.AnnotationUtils;
+import org.springframework.core.annotation.AnnotatedElementUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
@@ -29,8 +29,8 @@ public class RdLoggableAspect {
 
         Logger proxyLogger;
         Class<?> aClass = pjp.getTarget().getClass();
-        Loggable loggable = AnnotationUtils.findAnnotation(aClass, Loggable.class);
 
+        Loggable loggable = AnnotatedElementUtils.getMergedAnnotation(aClass, Loggable.class);
         if (loggable == null) {
             return pjp.proceed();
         }

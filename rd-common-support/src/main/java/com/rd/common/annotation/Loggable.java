@@ -1,5 +1,7 @@
 package com.rd.common.annotation;
 
+import org.springframework.core.annotation.AliasFor;
+
 import java.lang.annotation.*;
 
 /**
@@ -14,7 +16,11 @@ public @interface Loggable {
     /**
      * 日志名称，默认打到当前类
      */
+    @AliasFor("value")
     String logName() default "";
+
+    @AliasFor("logName")
+    String value() default "";
 
     /**
      * 是否打印结果集，默认不打印，防止大量结果集时系统变慢
