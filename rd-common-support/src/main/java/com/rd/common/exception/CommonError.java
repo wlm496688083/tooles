@@ -1,10 +1,6 @@
 package com.rd.common.exception;
 
-/**
- * User:  fuxueliang
- * Date:  16/3/19
- * Email: fuxueliang@jd.com
- */
+
 public enum CommonError implements ErrorCode {
     PARAMETER_EMPTY("%s不能为空"),
     BUSINESS_LIMIT("%s"),

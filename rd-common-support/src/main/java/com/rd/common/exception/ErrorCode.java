@@ -1,11 +1,6 @@
 package com.rd.common.exception;
 
-/**
- * 具体错误码的枚举实现该接口,并且附加到开放的包中即可
- * User:  fuxueliang
- * Date:  16/3/19
- * Email: fuxueliang@jd.com
- */
+
 public interface ErrorCode {
 
     /**

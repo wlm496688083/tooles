@@ -5,6 +5,7 @@ import com.rd.common.annotation.Loggable;
 import com.rd.common.annotation.UMP;
 import com.rd.common.rdenum.Key;
 import org.springframework.core.annotation.AliasFor;
+import org.springframework.stereotype.Service;
 
 import java.lang.annotation.*;
 
@@ -15,6 +16,7 @@ import java.lang.annotation.*;
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
+@Service
 @Loggable
 @UMP(Key.SERVICE)
 @ConvertException

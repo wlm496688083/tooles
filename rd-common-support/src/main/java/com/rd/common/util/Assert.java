@@ -7,11 +7,7 @@ import com.rd.common.exception.ValidateException;
 
 import java.util.Collection;
 
-/**
- * User:  fuxueliang
- * Date:  15/12/16
- * Email: fuxueliang@jd.com
- */
+
 public class Assert {
     private Assert() {
 

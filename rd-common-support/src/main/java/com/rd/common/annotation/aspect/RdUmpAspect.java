@@ -1,23 +1,9 @@
 package com.rd.common.annotation.aspect;
 
 
-import com.jd.ump.profiler.CallerInfo;
-import com.jd.ump.profiler.proxy.Profiler;
-import com.rd.common.annotation.UMP;
-import com.rd.common.contains.RdAnnotationContains;
-import com.rd.common.rdenum.Key;
-import com.rd.common.util.PropertiesUtil;
-import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
-import org.slf4j.helpers.MessageFormatter;
-import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
 /**
- * User:  fuxueliang
- * Date:  2016/9/26
- * Email: fuxueliang@jd.com
  * <p>
  * edit by:wanglimin14
  * 支持低版本的spring
@@ -26,7 +12,7 @@ import org.springframework.util.StringUtils;
 @Component
 public class RdUmpAspect {
 
-    @Around(value = RdAnnotationContains.RD_UMP_AROUND)
+    /*@Around(value = RdAnnotationContains.RD_UMP_AROUND)
     public Object doProcess(ProceedingJoinPoint pjp) throws Throwable {
 
         CallerInfo info = null;
@@ -59,6 +45,6 @@ public class RdUmpAspect {
                     appName, prefix, className, methodName
             }).getMessage();
         }
-    }
+    }*/
 
 }

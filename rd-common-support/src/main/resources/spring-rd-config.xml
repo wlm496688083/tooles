@@ -6,7 +6,7 @@
        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd"
        default-autowire="byName">
 
-    <context:component-scan base-package="com.rd.common.annotation"/>
+    <context:component-scan base-package="com.rd.common.annotation,com.rd.common.log"/>
 
     <mvc:annotation-driven/>
 

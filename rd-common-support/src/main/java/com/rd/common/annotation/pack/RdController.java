@@ -4,6 +4,7 @@ import com.rd.common.annotation.Loggable;
 import com.rd.common.annotation.UMP;
 import com.rd.common.rdenum.Key;
 import org.springframework.core.annotation.AliasFor;
+import org.springframework.stereotype.Controller;
 
 import java.lang.annotation.*;
 
@@ -14,6 +15,7 @@ import java.lang.annotation.*;
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
+@Controller
 @Loggable
 @UMP(Key.CONTROLLER)
 public @interface RdController {
