@@ -16,6 +16,10 @@ public class RdLoggableAspectTest extends TestBase {
 
     @Test
     public void testThis() {
-        loggableService.queryName();
+        try {
+            loggableService.queryName();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

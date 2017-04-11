@@ -3,6 +3,8 @@ package com.rd.common.annotation.aspect;
 import com.rd.common.annotation.Loggable;
 import com.rd.common.contains.RdAnnotationContains;
 import com.rd.common.util.JacksonUtil;
+import com.rd.common.util.MailUtil;
+import com.rd.common.util.ThrowableUtil;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -12,19 +14,15 @@ import org.springframework.core.annotation.AnnotatedElementUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
-import java.lang.reflect.Field;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-
 /**
  * Created by wanglimin1 on 2016/10/27.
  * <p>
  */
 @Aspect
 @Component
-public class RdLoggableAspect {
+public class EbaoLoggableAspect {
 
-    @Around(value = RdAnnotationContains.RD_LOGGABLE_AROUND)
+    @Around(value = RdAnnotationContains.EBAO_LOGGABLE_AROUND)
     public Object doProcess(ProceedingJoinPoint pjp) throws Throwable {
 
         Logger proxyLogger;
@@ -35,11 +33,7 @@ public class RdLoggableAspect {
             return pjp.proceed();
         }
 
-        initClassAndDeclaredFields(aClass);
         String methodName = pjp.getSignature().getName();
-        if (doFilterLog(aClass, methodName)) {
-            return pjp.proceed();
-        }
 
         if (!StringUtils.isEmpty(loggable.logName())) {
             proxyLogger = LoggerFactory.getLogger(loggable.logName());
@@ -68,46 +62,9 @@ public class RdLoggableAspect {
             return result;
         } catch (Throwable cause) {
             proxyLogger.error("invoke fail, method:{}, args:{}", methodName, argsJson, cause);
+            MailUtil.sendMail(ThrowableUtil.getThrowableDetail(cause));
             throw cause;
         }
-    }
-
-    private Map<String, Map<String, Boolean>> map = new ConcurrentHashMap<String, Map<String, Boolean>>(128);
-
-
-    /**
-     * 第一次获取时 先初始化 当前类和属性的关系
-     *
-     * @param aClass 当前实例
-     */
-    private void initClassAndDeclaredFields(Class<?> aClass) {
-        String className = aClass.getName();
-        Map<String, Boolean> declaredFieldMap = map.get(className);
-        if (declaredFieldMap == null) {
-            declaredFieldMap = new ConcurrentHashMap<String, Boolean>();
-            Field[] declaredFields = aClass.getDeclaredFields();
-            for (Field field : declaredFields) {
-                declaredFieldMap.put("get" + toUpStr(field.getName()), true);
-                declaredFieldMap.put("set" + toUpStr(field.getName()), true);
-            }
-            map.put(className, declaredFieldMap);
-        }
-    }
-
-    /**
-     * 过滤一些 已知的无用方法日志的打印
-     * eg: get,set
-     *
-     * @param aClass     当前类
-     * @param methodName 当前方法名
-     */
-    private boolean doFilterLog(Class<?> aClass, String methodName) {
-        Map<String, Boolean> declaredFieldMap = map.get(aClass.getName());
-        return declaredFieldMap.get(methodName) != null;
-    }
-
-    private String toUpStr(String str) {
-        return String.valueOf(str.charAt(0)).toUpperCase().concat(str.substring(1));
     }
 
 }

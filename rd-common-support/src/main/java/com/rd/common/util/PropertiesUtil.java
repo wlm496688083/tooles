@@ -10,26 +10,30 @@ import java.util.Properties;
  */
 public class PropertiesUtil {
 
-    private static String umpAppName = null;
     private static final String DEPLOY_APP_NAME = "deploy.app.name";
-    private static final String DEF_DEPLOY_APP_NAME = "pop.rd.man";
+    private static final String DEF_DEPLOY_APP_NAME = "ebao";
+    private static Properties properties = new Properties();
 
     static {
-        Properties properties = new Properties();
         try {
-            properties.load(ClassLoader.getSystemResourceAsStream("ump_aspect.properties"));
-            String deployAppName = System.getProperty(DEPLOY_APP_NAME);
-            if (StringUtils.isEmpty(deployAppName)) {
-                umpAppName = properties.getProperty(DEPLOY_APP_NAME, DEF_DEPLOY_APP_NAME);
-            } else {
-                umpAppName = deployAppName;
-            }
+            properties.load(ClassLoader.getSystemResourceAsStream("application.properties"));
         } catch (IOException e) {
-            umpAppName = DEF_DEPLOY_APP_NAME;
+            ;
         }
     }
 
     public static String getAppName() {
+        String deployAppName = System.getProperty(DEPLOY_APP_NAME);
+        String umpAppName;
+        if (StringUtils.isEmpty(deployAppName)) {
+            umpAppName = properties.getProperty(DEPLOY_APP_NAME, DEF_DEPLOY_APP_NAME);
+        } else {
+            umpAppName = deployAppName;
+        }
         return umpAppName;
+    }
+
+    public static String getValue(String key) {
+        return properties.getProperty(key);
     }
 }

@@ -26,8 +26,6 @@
         <jackson.version>2.8.3</jackson.version>
         <cglib.version>3.2.4</cglib.version>
         <aspect.version>1.8.9</aspect.version>
-        <ump.version>4.0.3</ump.version>
-        <jmq-client-spring.version>1.1.70</jmq-client-spring.version>
     </properties>
 
     <dependencyManagement>
@@ -149,26 +147,12 @@
                 <version>${aspect.version}</version>
             </dependency>
 
-            <!--ump-->
+            <!-- javaMail-->
             <dependency>
-                <groupId>com.jd.ump</groupId>
-                <artifactId>profiler</artifactId>
-                <version>${ump.version}</version>
+                <groupId>com.sun.mail</groupId>
+                <artifactId>javax.mail</artifactId>
+                <version>1.5.6</version>
             </dependency>
-
-            <!--jmq-->
-            <dependency>
-                <groupId>com.jd.jmq</groupId>
-                <artifactId>jmq-client-spring</artifactId>
-                <version>${jmq-client-spring.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>org.springframework</groupId>
-                        <artifactId>spring-beans</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-
         </dependencies>
     </dependencyManagement>
 

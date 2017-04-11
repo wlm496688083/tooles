@@ -1,11 +1,12 @@
 package com.rd.common.test.service;
 
-import com.rd.common.annotation.pack.RdService;
+import com.rd.common.annotation.Loggable;
+import org.springframework.stereotype.Service;
 
 /**
  * Created by wanglimin1 on 2016/11/1.
  */
-@RdService(logName = "asd")
+@Loggable
 public class LoggableService {
 
     private String name;
@@ -28,9 +29,8 @@ public class LoggableService {
         this.age = age;
     }
 
-    public String queryName() {
-        System.out.println(111);
-        return "111234";
+    public String queryName() throws Exception {
+       throw new Exception("miii");
     }
 
 }

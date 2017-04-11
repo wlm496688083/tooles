@@ -16,7 +16,7 @@ import java.io.IOException;
  * Created by wanglimin1 on 2016/11/4.
  * controller 层 异常统一管理
  */
-@ControllerAdvice
+//@ControllerAdvice
 public class MvcAdviceCommon {
 
     /**
@@ -25,7 +25,7 @@ public class MvcAdviceCommon {
      * @param e 异常
      * @return 返回页面
      */
-    @ExceptionHandler(Exception.class)
+    //@ExceptionHandler(Exception.class)
     public String insideProcess(HttpServletRequest request, HttpServletResponse response, Exception e) {
         String ajax = request.getHeader("X-Requested-With");
         if (StringUtils.isEmpty(ajax)) {

@@ -2,8 +2,6 @@ package com.rd.common.annotation.pack;
 
 import com.rd.common.annotation.ConvertException;
 import com.rd.common.annotation.Loggable;
-import com.rd.common.annotation.UMP;
-import com.rd.common.rdenum.Key;
 import org.springframework.core.annotation.AliasFor;
 import org.springframework.stereotype.Repository;
 
@@ -18,7 +16,6 @@ import java.lang.annotation.*;
 @Documented
 @Repository
 @Loggable
-@UMP(Key.REPOSITORY)
 @ConvertException
 public @interface RdRepository {
     @AliasFor(annotation = Loggable.class, attribute = "value")
