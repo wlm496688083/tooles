@@ -11,7 +11,7 @@
     <packaging>pom</packaging>
 
     <name>rd-common</name>
-    <url>git@git.jd.com:pop-rd-man/rd-common.git</url>
+    <url>git@github.com:wlm496688083/tooles.git</url>
 
     <properties>
         <project.build.name>rd-common</project.build.name>
@@ -156,6 +156,7 @@
     </dependencyManagement>
 
     <build>
+        <finalName>ebao-common-support</finalName>
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>

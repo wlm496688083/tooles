@@ -2,6 +2,7 @@ package com.rd.common.test.doit;
 
 import com.rd.common.test.TestBase;
 import com.rd.common.test.service.LoggableService;
+import com.rd.common.util.PropertiesSpringUtil;
 import org.junit.Test;
 
 import javax.annotation.Resource;

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 /**
  * Created by wanglimin1 on 2016/11/1.
  */
+@Service
 @Loggable
 public class LoggableService {
 
