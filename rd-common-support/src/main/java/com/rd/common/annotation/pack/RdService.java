@@ -2,7 +2,6 @@ package com.rd.common.annotation.pack;
 
 import com.rd.common.annotation.ConvertException;
 import com.rd.common.annotation.Loggable;
-import org.springframework.core.annotation.AliasFor;
 import org.springframework.stereotype.Service;
 
 import java.lang.annotation.*;
@@ -18,6 +17,6 @@ import java.lang.annotation.*;
 @Loggable
 @ConvertException
 public @interface RdService {
-    @AliasFor(annotation = Loggable.class, attribute = "value")
-    String logName() default "";
+   /* @AliasFor(annotation = Loggable.class, attribute = "value")
+    String logName() default "";*/
 }
